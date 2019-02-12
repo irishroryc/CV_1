@@ -341,6 +341,11 @@ class HybridImageFrame(uiutils.BaseFrame):
         if self.left_image is not None and self.right_image is not None:
             left_kernel_size = int(self.left_size_slider.get() / 2) * 2 + 1
             right_kernel_size = int(self.right_size_slider.get() / 2) * 2 + 1
+            print "DEBUG - " + str( self.left_image) + str(self.right_image)
+            print "DEBUG - " + str( self.left_sigma_slider.get()) + str(left_kernel_size)
+            print "DEBUG - " + str( self.left_high_low_indicator.get())
+            print "DEBUG - " + str( self.right_sigma_slider.get()) + str(right_kernel_size)
+            print "DEBUG - " + str( self.right_high_low_indicator.get()) + str(self.mixin_slider.get()) + str(self.scale_slider.get()))
             hybrid_image = hybrid.create_hybrid_image(
                 self.left_image, self.right_image,
                 self.left_sigma_slider.get(), left_kernel_size,
