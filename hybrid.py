@@ -161,7 +161,7 @@ def high_pass(img, sigma, size):
     return img - low_pass(img,sigma,size)
 
 def create_hybrid_image(img1, img2, sigma1, size1, high_low1, sigma2, size2,
-        high_low2, mixin_ratio):
+        high_low2, mixin_ratio, scale_factor):
     '''This function adds two images to create a hybrid image, based on
     parameters specified by the user.'''
     high_low1 = high_low1.lower()
@@ -181,9 +181,7 @@ def create_hybrid_image(img1, img2, sigma1, size1, high_low1, sigma2, size2,
     else:
         img2 = high_pass(img2, sigma2, size2)
 
-    img1 *= 2 * (1 - mixin_ratio)
-    img2 *= 2 * mixin_ratio
-    hybrid_img = (img1 + img2)
+    img1 *=  (1 - mixin_ratio)
+    img2 *= mixin_ratio
+    hybrid_img = (img1 + img2) * scale_factor
     return (hybrid_img * 255).clip(0, 255).astype(np.uint8)
-
-
